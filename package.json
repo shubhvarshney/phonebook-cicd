@@ -1,26 +1,44 @@
 {
   "name": "phonebook",
+  "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "dev:f": "vite",
+    "dev:b": "node --watch index.js",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "server": "json-server -p 3001 db.json"
   },
-  "author": "Shubh Varshney",
-  "license": "MIT",
-  "description": "",
   "dependencies": {
+    "axios": "^1.9.0",
     "dotenv": "^16.5.0",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-react": "^7.37.5",
     "express": "^5.1.0",
     "mongoose": "^8.15.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.27.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.30.1",
     "@stylistic/eslint-plugin-js": "^4.4.0",
-    "eslint": "^9.27.0",
-    "globals": "^16.2.0"
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.3.0",
+    "json-server": "^1.0.0-beta.3",
+    "vite": "^6.3.5"
+  },
+  "engines": {
+    "node": ">=22.16.0"
   }
 }

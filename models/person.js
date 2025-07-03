@@ -5,12 +5,14 @@ mongoose.set('strictQuery', false)
 const url = process.env.MONGODB_URI
 
 mongoose.connect(url)
-    .then(result => {
-        console.log('connected to MongoDB')
-    })
-    .catch(error => {
-        console.log('error connecting to MongoDB:', error.message)
-    })
+  .then(() => {
+    // eslint-disable-next-line no-console
+    console.log('connected to MongoDB')
+  })
+  .catch(error => {
+    // eslint-disable-next-line no-console
+    console.log('error connecting to MongoDB:', error.message)
+  })
 
 const personSchema = new mongoose.Schema({
   id: String,
@@ -33,11 +35,11 @@ const personSchema = new mongoose.Schema({
 })
 
 personSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString()
-        delete returnedObject._id
-        delete returnedObject._v
-    }
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject._v
+  }
 })
 
 module.exports = mongoose.model('Person', personSchema)
