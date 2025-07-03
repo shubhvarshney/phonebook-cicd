@@ -1,0 +1,48 @@
+name: Healthcheck pipeline
+
+on:
+  schedule:
+    - cron: '30 10 4 * *'
+
+jobs:
+  health_check:
+    name: Health Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deployed service URL 
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://phonebook-cicd-96b1.onrender.com
+          max-attempts: 3
+          retry-delay: 5s
+      - name: Notify Success
+        if : ${{ success() }}
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: |
+            [
+              {
+                "description": "Health check passed for https://phonebook-cicd-96b1.onrender.com by shubhvarshney",
+                "footer": { "text": "Severity: Informational" },
+                "color": 65280
+              }
+            ]
+        with:
+          args: 'Health check successful'
+      - name: Notify Failure
+        if: ${{ failure() }}
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: |
+            [
+              {
+                "description": "Health check failed for https://phonebook-cicd-96b1.onrender.com by shubhvarshney",
+                "footer": { "text": "Severity: Error" },
+                "color": 16711680
+              }
+            ]
+        with:
+          args: 'Health check failed'
+

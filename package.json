@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:e2e": "playwright test",
     "dev:f": "vite",
     "dev:b": "node --watch index.js",
     "build": "vite build",
@@ -27,7 +27,9 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.30.1",
+    "@playwright/test": "^1.53.2",
     "@stylistic/eslint-plugin-js": "^4.4.0",
+    "@types/node": "^24.0.10",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",

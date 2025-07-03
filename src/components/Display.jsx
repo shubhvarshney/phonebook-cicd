@@ -1,6 +1,6 @@
 const Person = (props) => {
     return (
-        <div>
+        <div data-testid="person">
             {props.person.name} {props.person.number} <button onClick={props.handleDelete}>delete</button>
         </div>
     )
